@@ -176,12 +176,13 @@ def split(filename, nMa, nAoA, ncluster):
     if not(clmiss and cdmiss and cmmiss):
         print 'Some points are not labelled.'
         
-    dataX = np.zeros((ns,4))
+    #dataX = np.zeros((ns,4))
+    dataX = np.zeros((ns,2))
 
     dataX[:,0]   = X[:,nc]
     dataX[:,1]   = X[:,0]
-    dataX[:,2]   = X[:,dim-2]                             
-    dataX[:,2]   = X[:,dim-1]    
+    #dataX[:,2]   = X[:,dim-2]                             
+    #dataX[:,3]   = X[:,dim-1]    
 
     dictCl['dataX']  = dataX
     dictCl['label'] = cllabel
@@ -203,5 +204,5 @@ def split(filename, nMa, nAoA, ncluster):
     '''
 
 
-split('CFDdata.txt', 2, 2, 8)    
+split('CFDdata.txt', 1, 1, 14)    
     

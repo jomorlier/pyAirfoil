@@ -5,16 +5,19 @@ Train local models
 """
 import numpy as np
 import sys
+import os
 from smt.methods import GEKPLS,KRG
 import classification
 
 funcs = ['Cl','Cd','Cm']
-ncoef = 2
-extra_points = 1
+ncoef = 3
+extra_points = 0
 delta_x = 5e-4
 
-imodel = 0
-for ifunc in xrange(1):#len(funcs)):
+os.system('rm ../data/*')
+
+for ifunc in xrange(len(funcs)):
+    imodel = 0
     datadic = np.load('cluster'+funcs[ifunc]+'.npy').item()
 
     dataX  = datadic['dataX']
@@ -44,7 +47,7 @@ for ifunc in xrange(1):#len(funcs)):
             t1.set_training_values(data[:,:dim],data[:,dim])
             # Add the gradient information
             for i in xrange(dim):
-                t1.set_training_derivatives(data[:,:dim],data[:,dim+i].reshape((data.shape[0],1)),kx=i)
+                t1.set_training_derivatives(data[:,:dim],data[:,dim+1+i].reshape((data.shape[0],1)),kx=i)
             t1.train()
             
             t1._saveModeDict('../data/'+funcs[ifunc]+str(imodel)+'.npy')

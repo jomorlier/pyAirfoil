@@ -1,0 +1,4 @@
+*.pyc
+preprocess/collection
+*.npy
+*.txt
